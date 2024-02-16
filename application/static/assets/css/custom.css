@@ -1,0 +1,42 @@
+/* ================ CLOCK ================ */
+.clock-container h4,
+.clock-container h5,
+.clock-container p {
+    margin-bottom: 0;
+    color: #fff !important;
+}
+
+.clock-container .clock {
+    color: var(--bs-white);
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    padding: 0.2rem 1.5rem;
+    margin: 0.5rem;
+    border-radius: 16px;
+    background-color: var(--bs-light);
+    z-index: 1025;
+}
+
+.clock-container .clock h4,
+.clock-container .clock h5 {
+    color: var(--bs-white);
+}
+
+.clock-container .clock-right {
+    right: 0;
+    background: linear-gradient(131deg, rgb(252, 171, 1), rgb(254, 33, 79) 100%);
+}
+
+.clock-container .clock-left {
+    left: 0;
+    background: linear-gradient(117deg, rgb(30, 42, 120), rgb(255, 46, 76) 100%);
+}
+
+
+/* ================ TEXT ================ */
+.text__justify {
+    text-align: justify;
+}
+
+/* ================ END TEXT ================ */

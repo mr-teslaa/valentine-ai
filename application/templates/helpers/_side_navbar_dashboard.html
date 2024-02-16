@@ -1,0 +1,49 @@
+<aside class="col-lg-3 col-md-4 border-end pb-5 mt-n5">
+    <div class="position-sticky top-0">
+        <div class="text-center py-5">
+            <div class="d-table position-relative mx-auto mt-2 mt-lg-4 pt-5 mb-3">
+                <!-- <img src="{{ url_for('static', filename='assets/images/profile/' + current_user.img) }}"
+      class="d-block rounded-circle"
+      width="120"
+      alt="John Doe"> -->
+                <div style="height: 120px;
+                            width: 120px" class="bg-primary d-block rounded-circle"></div>
+            </div>
+            <h2 class="h5 mb-1">{{ current_user.name | title }}</h2>
+            <p class="mb-4">Address: {{ current_user.address | title }}</p>
+            <button type="button" class="btn btn-secondary w-100 d-md-none mt-n2 mb-3" data-bs-toggle="collapse"
+                data-bs-target="#account-menu">
+                <i class="bx bxs-user-detail fs-xl me-2"></i>
+                Account menu
+                <i class="bx bx-chevron-down fs-lg ms-1"></i>
+            </button>
+            <div id="account-menu" class="list-group list-group-flush collapse d-md-block">
+                <a href="{{ url_for("user.dashboard") }}"
+                    class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class="bx bxs-dashboard fs-xl opacity-60 me-2"></i>
+                    Dashboard
+                </a>
+                <a href="{{ url_for("user.letters") }}"
+                    class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class="bx bxs-envelope fs-xl opacity-60 me-2"></i>
+                    All Letters
+                </a>
+                <a href="{{ url_for("user.account") }}"
+                    class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class="bx bx-cog fs-xl opacity-60 me-2"></i>
+                    Account
+                </a>
+                <a href="{{ url_for("user.account_password") }}"
+                    class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class="bx bx-lock-alt fs-xl opacity-60 me-2"></i>
+                    Password
+                </a>
+                <a href="{{ url_for("auth.logout") }}"
+                    class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class="bx bx-log-out fs-xl opacity-60 me-2"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+    </div>
+</aside>

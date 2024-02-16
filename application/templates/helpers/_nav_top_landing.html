@@ -1,0 +1,39 @@
+<header class="header navbar bg-light navbar-expand-lg position-absolute navbar-sticky shadow-sm  navbar-stuck">
+    <nav class="container px-3">
+        <a href="/" class="navbar-brand">
+            <!-- <img src="{{ url_for('static', filename='assets/images/logo.jpg') }}"
+                 width="80"
+                 alt="Rabeya Baten Foundation Logo"> -->
+            <span class="d-none d-sm-block">ValentineAI</span>
+        </a>
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse1"
+                aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarCollapse1" class="collapse navbar-collapse">
+            <hr class="d-lg-none mt-3 mb-2">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="{{ url_for('public.index') }}" class="nav-link">Home</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a href="#" class="nav-link">Contact Us</a>
+                </li> -->
+            </ul>
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('user.dashboard') }}"
+                   class="btn btn-primary btn-sm fs-sm rounded ms-2 my-3 my-lg-0">Dashboard</a>
+                <a href="{{ url_for('auth.logout') }}"
+                   class="btn btn-danger btn-sm fs-sm rounded ms-2 my-3 my-lg-0">Logout</a>
+            {% else %}
+                <a href="{{ url_for('auth.join') }}"
+                   class="btn btn-primary btn-sm fs-sm rounded my-3 my-lg-0">Join Us</a>
+                <a href="{{ url_for('auth.login') }}"
+                   class="btn btn-outline-primary btn-sm fs-sm rounded ms-2 my-3 my-lg-0">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+</header>

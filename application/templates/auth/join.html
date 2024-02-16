@@ -1,0 +1,182 @@
+{% extends 'layout/root.html' %}
+
+{% block nav %}
+{% include 'helpers/_nav_top_landing.html' %}
+{% endblock %}
+
+{% block body %}
+<main style="margin-top: 20px">
+    <section class="position-relative pt-5 pb-5">
+
+        <!-- Sign in form -->
+        <div class="container d-flex flex-wrap justify-content-center justify-content-xl-start h-100">
+            <div class="w-100 align-self-end pt-1 pt-md-4 pb-4" style="max-width: 826px;">
+                <h1 class="text-center text-xl-start">Create Account</h1>
+                <p class="text-center text-xl-start pb-3 mb-3">Already have an account?<a
+                        href="{{ url_for('auth.login') }}"> Login here.</a></p>
+                
+                <!-- FORM VALIDATION ERROR -->
+                {% for field in [form.name, form.phone, form.email, form.password, form.confirm_password] %}
+                    {% if field.errors %}
+                    <div class="row my-1">
+                        <div class="col-12">
+                            <div class="toast align-items-center bg-danger fade show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="flase" style="width: 100%">
+                                <div class="toast-body">
+                                    {% for error in field.errors %}
+                                        <sapn class="text-white mb-0">{{ field.label }}: {{ error }}</sapn>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+                    
+                <form action="" method="POST" class="needs-validation my-2" novalidate="">
+                    {{ form.hidden_tag() }}
+                    <div class="row">
+                        <!-- START - NAME -->
+                        <div class="col-12">
+                            <div class="position-relative mb-4">
+                                {{ form.name.label(class="form-label fs-base") }}
+                                {{ form.name(
+                                    class="form-control form-control-lg",
+                                    placeholder="Your Name"
+                                ) }}
+                                <div class="invalid-feedback position-absolute start-0 top-100">
+                                {% if form.name.errors %}
+                                    {% for error in form.name.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                {% else %}
+                                <span>Please enter a valid first name!</span>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END - NAME -->
+                    </div>
+              
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="position-relative mb-4">
+                                {{ form.email.label(class="form-label fs-base") }}
+                                {{ form.email(
+                                    class="form-control form-control-lg",
+                                    placeholder="Email"
+                                ) }}
+                                <div class="invalid-feedback position-absolute start-0 top-100">
+                                {% if form.email.errors %}
+                                    {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                {% else %}
+                                    <span>Please enter a valid Email!</span>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative mb-4">
+                                {{ form.phone.label(class="form-label fs-base") }}
+                                {{ form.phone(
+                                    class="form-control form-control-lg",
+                                    placeholder="Phone number"
+                                ) }}
+                                <div class="invalid-feedback position-absolute start-0 top-100">
+                                {% if form.phone.errors %}
+                                    {% for error in form.phone.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                {% else %}
+                                    <span>Please enter a valid phone number!</span>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="mb-4">
+                                {{ form.password.label(class="form-label fs-base") }}
+                                <div class="password-toggle">
+                                    {{ form.password(
+                                        class="form-control form-control-lg",
+                                        placeholder="Password"
+                                    ) }}
+                                    <label class="password-toggle-btn" aria-label="Show/hide password">
+                                        <input class="password-toggle-check" type="checkbox">
+                                        <span class="password-toggle-indicator"></span>
+                                    </label>
+                                    <div class="invalid-feedback position-absolute start-0 top-100">
+                                    {% if form.password.errors %}
+                                        {% for error in form.password.errors %}
+                                        <span>{{ error }}</span>
+                                        {% endfor %}
+                                    {% else %}
+                                        <span>Please enter a valid password!</span>
+                                    {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="mb-4">
+                                {{ form.confirm_password.label(class="form-label fs-base") }}
+                                <div class="password-toggle">
+                                    {{ form.confirm_password(
+                                        class="form-control form-control-lg",
+                                        placeholder="Confirm Password"
+                                    ) }}
+                                    <label class="password-toggle-btn" aria-label="Show/hide password">
+                                        <input class="password-toggle-check" type="checkbox">
+                                        <span class="password-toggle-indicator"></span>
+                                    </label>
+                                    <div class="invalid-feedback position-absolute start-0 top-100">
+                                    {% if form.confirm_password.errors %}
+                                        {% for error in form.confirm_password.errors %}
+                                        <span>{{ error }}</span>
+                                        {% endfor %}
+                                    {% else %}
+                                        <span>Please enter a valid password!</span>
+                                    {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {{ form.submit(class="btn btn-primary shadow-primary btn-lg w-100") }}
+                </form>       
+                <!-- <h6 class="text-center mb-4">Or sign in with your social network</h6>
+                <div class="row row-cols-1 row-cols-sm-2">
+                    <div class="col mb-3">
+                        <a href="#" class="btn btn-icon btn-secondary btn-google btn-lg w-100">
+                            <i class="bx bxl-google fs-xl me-2"></i>
+                            Google
+                        </a>
+                    </div>
+                    <div class="col mb-3">
+                        <a href="#" class="btn btn-icon btn-secondary btn-facebook btn-lg w-100">
+                            <i class="bx bxl-facebook fs-xl me-2"></i>
+                            Facebook
+                        </a>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- Background -->
+        <div class="position-absolute top-0 end-0 w-33 h-100 bg-position-center bg-repeat-0 bg-size-cover d-none d-xl-block"
+            style="background-image: url(https://silicon.createx.studio/assets/img/account/signin-bg.jpg);"></div>
+    </section>
+</main>
+{% endblock %}
+
+{% block footer %}
+{% include 'helpers/_global_footer.html' %}
+{% endblock %}

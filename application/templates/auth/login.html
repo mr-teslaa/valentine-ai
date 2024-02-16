@@ -1,0 +1,112 @@
+{% extends 'layout/root.html' %}
+
+{% block nav %}
+{% include 'helpers/_nav_top_landing.html' %}
+{% endblock %}
+
+{% block body %}
+<main style="margin-top: 20px">
+    <section class="position-relative pt-5 pb-5">
+
+        <!-- Sign in form -->
+        <div class="container d-flex flex-wrap justify-content-center justify-content-xl-start h-100">
+            <div class="w-100 align-self-end pt-1 pt-md-4 pb-4" style="max-width: 526px;">
+                <h1 class="text-center text-xl-start">Welcome Back</h1>
+                <p class="text-center text-xl-start pb-3 mb-3">Don’t have an account yet? <a
+                        href="{{ url_for('auth.join') }}">Register here.</a></p>
+                
+                <!-- FORM VALIDATION ERROR -->
+                {% for field in [form.phone, form.password] %}
+                    {% if field.errors %}
+                    <div class="row my-1">
+                        <div class="col-12">
+                            <div class="toast align-items-center bg-danger fade show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="flase" style="width: 100%">
+                                <div class="toast-body">
+                                    {% for error in field.errors %}
+                                        <sapn class="text-white mb-0">{{ field.label }}: {{ error }}</sapn>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+
+                <form action="" method="POST" class="needs-validation mb-2" novalidate="">
+                    {{ form.hidden_tag() }}
+                    <div class="position-relative mb-4">
+                        {{ form.phone.label(class="form-label fs-base") }}
+                        
+                        {{ form.phone(
+                            class="form-control form-control-lg",
+                            placeholder="Phone number"
+                        ) }}
+                        <div class="invalid-feedback position-absolute start-0 top-100">
+                        {% if form.phone.errors %}
+                            {% for error in form.phone.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}                  
+                        {% else %}
+                            <span>Please enter valid phone number!</span>    
+                        {% endif %}
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        {{ form.password.label(class="form-label fs-base") }}
+                        <div class="password-toggle">
+                            {{ form.password(
+                                class="form-control form-control-lg",
+                                placeholder="Password"
+                            ) }}
+                            <label class="password-toggle-btn" aria-label="Show/hide password">
+                                <input class="password-toggle-check" type="checkbox">
+                                <span class="password-toggle-indicator"></span>
+                            </label>
+                            <div class="invalid-feedback position-absolute start-0 top-100">
+                            {% if form.password.errors %}
+                                {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            {% else %}
+                                <span>Please enter a valid password</span>
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="form-check">
+                            {{ form.remember(class="form-check-input") }}
+                            {{ form.remember.label(class="form-check-label fs-base") }}
+                        </div>
+                    </div>
+                    {{ form.submit(class="btn btn-primary shadow-primary btn-lg w-100") }}
+                </form>
+                <a href="{{ url_for('auth.forgetpassword') }}" class="btn btn-link btn-lg w-100">Forgot your password?</a>           
+                <!-- <h6 class="text-center mb-4">Or sign in with your social network</h6>
+                <div class="row row-cols-1 row-cols-sm-2">
+                    <div class="col mb-3">
+                        <a href="#" class="btn btn-icon btn-secondary btn-google btn-lg w-100">
+                            <i class="bx bxl-google fs-xl me-2"></i>
+                            Google
+                        </a>
+                    </div>
+                    <div class="col mb-3">
+                        <a href="#" class="btn btn-icon btn-secondary btn-facebook btn-lg w-100">
+                            <i class="bx bxl-facebook fs-xl me-2"></i>
+                            Facebook
+                        </a>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- Background -->
+        <div class="position-absolute top-0 end-0 w-50 h-100 bg-position-center bg-repeat-0 bg-size-cover d-none d-xl-block"
+            style="background-image: url(https://silicon.createx.studio/assets/img/account/signin-bg.jpg);"></div>
+    </section>
+</main>
+{% endblock %}
+
+{% block footer %}
+{% include 'helpers/_global_footer.html' %}
+{% endblock %}

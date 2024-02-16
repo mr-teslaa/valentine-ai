@@ -1,0 +1,99 @@
+{% extends 'layout/root.html' %}
+{% block nav %}
+{% include 'helpers/_nav_top_landing.html' %}
+{% endblock %}
+{% block body %}
+<main style="margin-top: 100px">
+    <section class="container">
+        <div class="row">
+            <!-- Sidebar (User info + Account menu) -->
+            {% include 'helpers/_side_navbar_dashboard.html' %}
+
+            <div class="col-md-9 pb-5 mb-2 mb-lg-4 mt-n3 mt-md-0">
+                <h2>
+                    💌 Letters you have sent 
+                </h2>
+
+                <!-- Light bordered table -->
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width: 5%">#</th>
+                                <th scope="col">Receiver</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Gender</th>
+                                <th scope="col" style="width: 40%">Message</th>
+                                <th scope="col" style="width: 10%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for letter in letters.items %}
+                            <tr>
+                                <th scope="row">{{ loop.index }}</th>
+                                <td>{{ letter.receiver_name | title }}</td>
+                                <td>{{ letter.email }}</td>
+                                <td>{{ letter.gender | title }}</td>
+                                <td>{{ letter.message }}</td>
+                                <td>
+                                    <a href="{{ url_for('public.letter', link=letter.link) }}" class="btn btn-success">
+                                        View Letter
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination: Basic example -->
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        {% if letters.has_prev %}
+                        <li class="page-item">
+                            <a href="{{ url_for('user.letters', page=letters.prev_num) }}" class="page-link">
+                                <i class="bx bx-chevron-left ms-n1 me-1"></i>
+                                Prev
+                            </a>
+                        </li>    
+                        {% endif %}
+
+                        <!-- START - Iterate through the pagination -->
+                        {% for page_num in letters.iter_pages(left_edge=0, left_current=2, right_current=3, right_edge=0) %}
+                        {% if page_num %}
+                        {% if letters.page == page_num %}
+                        <li class="page-item active d-none d-sm-block" aria-current="page">
+                            <a class="page-link" href="{{ url_for('user.letters', page=page_num) }}">
+                                {{ page_num }}
+                                <span class="visually-hidden">(current)</span>
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="page-item d-none d-sm-block">
+                            <a href="{{ url_for('user.letters', page=page_num) }}" class="page-link">
+                                {{ page_num }}
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                        <!-- END - Iterate through the pagination -->
+
+                        {% if letters.has_next %}
+                        <li class="page-item">
+                            <a href="{{ url_for('user.letters', page=letters.next_num) }}" class="page-link">
+                                Next
+                                <i class="bx bx-chevron-right me-n1 ms-1"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
+{% block footer %}
+{% include 'helpers/_global_footer.html' %}
+{% endblock %}

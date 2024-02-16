@@ -1,0 +1,41 @@
+{% extends 'layout/root.html' %}
+
+{% block nav %}
+{% include 'helpers/_nav_top_landing.html' %}
+{% endblock %}
+
+{% block body %}
+<section class="jarallax bg-dark min-vh-100" data-jarallax="" data-speed="0.4" data-bs-theme="dark">
+	<span class="position-absolute top-0 start-0 w-100 h-100"
+		style="background: radial-gradient(116.18% 118% at 50% 100%, rgba(99, 102, 241, 0.1) 0%, rgba(218, 70, 239, 0.05) 41.83%, rgba(241, 244, 253, 0.07) 82.52%);"></span>
+
+	<div class="min-vh-100 d-flex flex-column py-5">
+
+		<div class="container position-relative text-center zindex-5 pt-4 pt-md-5 pb-5 mt-auto">
+			<div class="row mt-5">
+				<div class="col-xl-10 mx-auto">
+					<h1 class="display-1 mb-md-4 pb-3 text-light">Send your loved person a letter digitally 💌</h1>
+					<p class="text-light mx-auto mb-md-4 mb-3 pb-xl-2 pb-md-0 pb-sm-2 fs-3" style="max-width: 36.5rem;">
+						Powered by ValentineAI
+						<br>
+						Hosted on <a href="http://binomatrix.com" target="_new">BinoMatrix</a>
+					</p>
+					<a href="{{ url_for('auth.join') }}" class="btn btn-lg btn-primary shadow-primary">Write your
+						valentine letter</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="jarallax-container-0" class="jarallax-container"
+		style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; z-index: -100; clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%);">
+		<div class="jarallax-img"
+			style="background-image: url({{ url_for("static", filename="assets/images/hero-bg.png") }}); object-fit: cover; object-position: 50% 50%; max-width: none; position: fixed; top: 0px; left: 0px; overflow: hidden; pointer-events: none; transform-style: preserve-3d; backface-visibility: hidden; margin-top: -4.63125px; transform: translate3d(0px, 4.63125px, 0px);"
+			data-jarallax-original-styles="background-image: url({{ url_for("static", filename="assets/images/hero-bg.png") }});">
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+{% block footer %}
+{% include 'helpers/_global_footer.html' %}
+{% endblock %}

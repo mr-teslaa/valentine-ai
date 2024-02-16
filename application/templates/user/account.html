@@ -1,0 +1,134 @@
+{% extends 'layout/root.html' %}
+
+{% block nav %}
+{% include 'helpers/_nav_top_landing.html' %}
+{% endblock %}
+
+{% block body %}
+<main style="margin-top: 100px">
+    <section class="container">
+        <div class="row">
+            <!-- Sidebar (User info + Account menu) -->
+            {% include 'helpers/_side_navbar_dashboard.html' %}
+
+            <!-- Account details -->
+            <div class="col-md-9 pb-5 mb-2 mb-lg-4 mt-3 mt-md-0">
+                <div class="ps-md-3 ps-lg-0 mt-md-2 py-md-4">
+                    <h1 class="h2 pt-xl-1 pb-3">Profile Details</h1>
+
+                    {% for field in [form.name, form.email, form.phone] %}
+                        {% if field.errors %}
+                        <div class="row my-1">
+                            <div class="col-12">
+                                <div class="toast align-items-center bg-danger fade show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="flase" style="width: 100%">
+                                    <div class="toast-body">
+                                        {% for error in field.errors %}
+                                            <sapn class="text-white mb-0">{{ field.label }}: {{ error }}</sapn>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+
+
+                    <!-- Basic info -->
+                    <h2 class="h5 text-primary mb-4">Edit info</h2>
+                    <form action="" method="POST" class="needs-validation my-2" novalidate="">
+                        {{ form.hidden_tag() }}
+
+                        <!-- === START - NAME CONTAINER === -->
+                        <div class="row">
+
+                            <!-- START - NAME -->
+                            <div class="col-12">
+                                <div class="position-relative mb-4">
+                                    {{ form.name.label(class="form-label fs-base") }}
+                                    {{ form.name(
+                                        class="form-control form-control-lg",
+                                        placeholder="Your First Name"
+                                    ) }}
+                                    <div class="invalid-feedback position-absolute start-0 top-100">
+                                    {% if form.name.errors %}
+                                        {% for error in form.name.errors %}
+                                        <span>{{ error }}</span>
+                                        {% endfor %}
+                                    {% else %}
+                                    <span>Please enter a valid name!</span>
+                                    {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END - NAME -->
+                        </div>
+                        <!-- END - FIRST NAME, MIDDLE NAME, LAST NAME CONTAINER -->
+
+                        <!-- === START - EMAIL, PHONE, ADDRESS CONTAINER === -->
+                        <div class="row">
+
+                            <!-- START - EMAIL -->
+                            <div class="col-12">
+                                <div class="position-relative mb-4">
+                                    {{ form.email.label(class="form-label fs-base") }}
+                                    {{ form.email(
+                                        class="form-control form-control-lg",
+                                        placeholder="Email"
+                                    ) }}
+                                    <div class="invalid-feedback position-absolute start-0 top-100">
+                                    {% if form.email.errors %}
+                                        {% for error in form.email.errors %}
+                                        <span>{{ error }}</span>
+                                        {% endfor %}
+                                    {% else %}
+                                        <span>Please enter a valid Email!</span>
+                                    {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END - EMAIL -->
+
+                            <!-- START - PHONE -->
+                            <div class="col-12">
+                                <div class="position-relative mb-4">
+                                    {{ form.phone.label(class="form-label fs-base") }}
+                                    {{ form.phone(
+                                        class="form-control form-control-lg",
+                                        placeholder="Phone number"
+                                    ) }}
+                                    <div class="invalid-feedback position-absolute start-0 top-100">
+                                    {% if form.phone.errors %}
+                                        {% for error in form.phone.errors %}
+                                        <span>{{ error }}</span>
+                                        {% endfor %}
+                                    {% else %}
+                                        <span>Please enter a valid phone number!</span>
+                                    {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END - PHONE -->
+                        </div>
+                        <!-- === END - EMAIL, PHONE, ADDRESS CONTAINER === -->
+                        
+                        
+                        {{ form.submit(class="btn btn-primary shadow-primary btn-lg w-100") }}
+                    </form>    
+
+                    <!-- Delete account -->
+                    <!-- <h2 class="h5 text-primary pt-1 pt-lg-3 mt-4">Delete account</h2>
+                    <p>When you delete your account, your public profile will be deactivated immediately. If you change your
+                        mind before the 14 days are up, sign in with your email and password, and we’ll send you a link to
+                        reactivate your account.</p>
+                    <button type="button" class="btn btn-danger">Yes, I want to delete my
+                            account</button> -->
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
+
+{% block footer %}
+{% include 'helpers/_global_footer.html' %}
+{% endblock %}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Your Password</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/theme.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/custom.css') }}" />
+  </head>
+  <body style="font-family: sans-serif; margin: 1rem 0.5rem; background-color: #6366f1; text-align: center;">
+    <div style="background-color: #fff; padding: 0.5rem;">
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <a href="https://rabeyabaten.com/" style="text-decoration: none;">
+                <img src="https://rabeyabaten.com/static/assets/images/logo.jpg" width="80"
+                  alt="Rabeya Baten Foundation">
+              </a>
+            </td>
+            <td>
+              <a href="https://rabeyabaten.com/" style="text-decoration: none;">
+                <span style="margin-left: 10px; font-size: 1.5rem; color: #000; font-weight: 700;">
+                  Rabeya Baten Foundation
+                </span>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="text-align: left; margin-top: 20px;">
+        As Salamu Alaikum, Thank you for registering with the Rabeya Baten Foundation. This email confirms that we have received your registration and the information provided by you.
+      </p>
+      <p style="margin-top: 50px; margin-bottom: 50px; text-align: center;">
+        <a href="{{ activation_link }}"
+          style="background: #6366f1; padding: 15px 40px; color: #fff; border-radius: 0.35rem; text-decoration: none;">
+          Activate your account
+        </a>
+      </p>
+      <p style="text-align: left;">
+        If you are unable to click the link, please copy and paste it into your browser's address bar.
+        <br>
+        <a href="{{ activation_link }}"> {{ activation_link }} </a>
+      </p>
+        <br>
+      <p style="text-align: left;">
+        Your account has been created successfully, and you can now access our website and start exploring our services. 
+
+        If you have any questions or need further assistance, please contact us at
+        <a href="mailto:rabeyabatenfoundation@gmail.com">rabeyabatenfoundation@gmail.com</a>.
+      </p>
+
+      <p style="text-align: left;">
+        Zazak Allahu Khairan and Thank you for joining our community and supporting our mission to make a positive impact on society.
+      </p>
+      <p style="text-align: left;">
+        Best Regards,<br>
+        Rabeya Baten Foundation Team
+      </p>
+      <address style="text-align: left; background-color: #dfe6e9; color: #000; padding: 2rem;">
+        <small>
+          Mobile: +8801765-914159 <br>
+          Address: Rabeya Monjil, Padmapukur Par, Saiyadpur,<br>
+          Post Office: Duttapara. Thana: Chandraganj,<br>
+          District: Lakshmipur, Country: Bangladesh.<br>
+          Email: rabeyabatenfoundation@gmail.com<br>
+          YouTube: <a href="https://www.youtube.com/@RabeyaBatenFoundation">@RabeyaBatenFoundation</a>
+          <br>
+          Facebook: <a href="https://www.facebook.com/rabeyabatenfoundation">@rabeyabatenfoundation</a>
+          <br><br>
+        </small>
+      </address>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+{% extends 'layout/root.html' %}
+{% block nav %}
+    {% include 'helpers/_nav_top_landing.html' %}
+{% endblock %}
+{% block body %}
+    <main style="margin-top: 100px">
+        <section class="container">
+            <div class="row">
+                <!-- Sidebar (User info + Account menu) -->
+                {% include 'helpers/_side_navbar_dashboard.html' %}
+
+                <div class="col-md-9 pb-5 mb-2 mb-lg-4 mt-n3 mt-md-0">
+                    <h2>
+                        Send a letter to your loving person 💌
+                    </h2>
+
+
+                    <!-- FORM VALIDATION ERROR -->
+                    {% for field in [form.name, form.email, form.gender, form.letter] %}
+                        {% if field.errors %}
+                        <div class="row my-1">
+                            <div class="col-12">
+                                <div class="toast align-items-center bg-danger fade show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="flase" style="width: 100%">
+                                    <div class="toast-body">
+                                        {% for error in field.errors %}
+                                            <sapn class="text-white mb-0">{{ field.label }}: {{ error }}</sapn>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+
+
+                    <form action="" method="POST" class="needs-validation mb-2 position-relative" novalidate="">
+
+                        <!-- LOADING SPINNER -->
+                        <div id="spinner" class="w-100 text-center d-none">
+                            <div class="spinner-border mt-5" style="width: 3.5rem; height: 3.5rem;" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+
+                            <p>Loading..</p>
+                        </div>
+                        <div id="formel">
+                            {{ form.hidden_tag() }}
+                            <div class="position-relative mb-4">
+                                {{ form.name.label(class="form-label fs-base") }}
+                                
+                                {{ form.name(
+                                    class="form-control form-control-lg",
+                                    placeholder=""
+                                ) }}
+                                <div class="invalid-feedback position-absolute start-0 top-100">
+                                {% if form.name.errors %}
+                                    {% for error in form.name.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}                  
+                                {% else %}
+                                    <span>Please enter valid name!</span>    
+                                {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                {{ form.email.label(class="form-label fs-base") }}
+                                
+                                {{ form.email(
+                                    class="form-control form-control-lg",
+                                    placeholder=""
+                                ) }}
+                                <div class="invalid-feedback position-absolute start-0 top-100">
+                                {% if form.email.errors %}
+                                    {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}                  
+                                {% else %}
+                                    <span>Please enter valid email!</span>    
+                                {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                {{ form.gender.label(class="form-label fs-base") }}
+                                
+                                {{ form.gender(
+                                    class="form-select form-select-lg",
+                                    placeholder=""
+                                ) }}
+                                <div class="invalid-feedback position-absolute start-0 top-100">
+                                {% if form.gender.errors %}
+                                    {% for error in form.gender.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}                  
+                                {% else %}
+                                    <span>Select a valid gender!</span>    
+                                {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="position-relative mb-4">
+                                {{ form.letter.label(class="form-label fs-base") }}
+                                
+                                {{ form.letter(
+                                    class="form-control form-control-lg",
+                                    placeholder="",
+                                    style="height: 120px",
+                                ) }}
+                                <div class="invalid-feedback position-absolute start-0 top-100">
+                                {% if form.letter.errors %}
+                                    {% for error in form.letter.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}                  
+                                {% else %}
+                                    <span>Please enter a valid letter!</span>    
+                                {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    {{ form.is_hidden(class="form-check-input") }}
+                                    {{ form.is_hidden.label(class="form-check-label") }}
+                                </div>
+                            </div>
+                            {{ form.submit(class="btn btn-primary shadow-primary btn-lg w-100") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- <script>
+        let genderel = document.getElementById("gender");
+        let form = document.querySelector('#formel');
+        let spinner = document.querySelector('#spinner');
+        let submit = document.querySelector('submit');
+
+        genderel.addEventListener('change', () => {
+            form.classList.add('d-none');
+            spinner.classList.remove('d-none');
+            let gender = document.getElementById("gender").value;
+            fetch(`${window.origin}/dashboard/letter/regenerate/`, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    gender
+                }),
+            }).then((response) => {
+                if (response.status !== 200) {
+                    console.log(`Something went wrong! Reload the page. Status: ${response.status}`);
+                    return;
+                }
+
+                response.json().then((data) => {
+                    spinner.classList.add('d-none');
+                    form.classList.remove('d-none');
+                    console.log(data)
+                })
+            });
+        });
+    </script> -->
+{% endblock %}
+{% block footer %}
+    {% include 'helpers/_global_footer.html' %}
+{% endblock %}

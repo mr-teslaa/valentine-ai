@@ -1,0 +1,59 @@
+{% extends 'layout/root.html' %}
+{% block nav %}
+{% include 'helpers/_nav_top_landing.html' %}
+{% endblock %}
+{% block body %}
+<main style="margin-top: 100px">
+    <section class="container">
+        <div class="row">
+            <!-- Sidebar (User info + Account menu) -->
+            {% include 'helpers/_side_navbar_dashboard.html' %}
+
+            <div class="col-md-9 pb-5 mb-2 mb-lg-4 mt-n3 mt-md-0">
+                <h2>
+                    💌 Message sent to your love 💝 ✈️
+                </h2>
+
+                <input type="text" id="loveLetterLink" class="form-control form-control-lg" value="" readonly>
+                <button id="clipboardEl" class="btn btn-primary mt-3">
+                    <i class='bx bx-copy fs-lg me-2'></i>
+                    Copy link
+                </button>
+
+                <a href="{{ url_for('user.letters') }}" class="btn btn-dark mt-3 ms-2">
+                    View all letters
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+let clipboardEl = document.querySelector('#clipboardEl');
+let loveLetterLink = document.querySelector('#loveLetterLink');
+loveLetterLink.value = `${window.origin}/letter/{{ letter.link }}/`
+
+
+//Copy password to clipboard
+clipboardEl.addEventListener('click', () => {
+    const textarea = document.createElement('textarea') ;
+    const letterLink = loveLetterLink.value;
+
+    if (!letterLink){
+        return '' ;
+    }
+
+    textarea.value = letterLink;
+    document.body.appendChild(textarea) ; 
+    textarea.select() ;
+    document.execCommand('copy') ;
+    textarea.remove();
+    
+    //Make an alert when password is copied
+    alert('Link copied to clipboard') ;
+});
+</script>
+{% endblock %}
+{% block footer %}
+{% include 'helpers/_global_footer.html' %}
+{% endblock %}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>💌 You received a letter to read - ValentineAI</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/theme.min.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/custom.css') }}" />
+	</head>
+	<body style="font-family: sans-serif; margin: 1rem 3rem; background-color: #6366f1;">
+		<div style="background-color: #fff; padding: 2rem;">
+			<table>
+				<tbody>
+					<tr>
+						<!-- <td>
+              <a href="https://rabeyabaten.com/" style="text-decoration: none;">
+                <img src="https://rabeyabaten.com/static/assets/images/logo.jpg" width="80"
+                  alt="Rabeya Baten Foundation">
+              </a>
+            </td> -->
+						<td>
+							<a href="#" style="text-decoration: none;">
+								<span style="margin-left: 10px; font-size: 1.5rem; color: #000; font-weight: 700;">
+									ValentineAI
+								</span>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p style="text-align: left; margin-top: 20px">
+				You have received a new letter from your loved person who really want to surprise you. Check his messages below
+			</p>
+			<p style="margin-top: 50px; margin-bottom: 50px; text-align: center;">
+				<a href="{{ letter_link }}"
+					style="background: #6366f1; padding: 15px 40px; color: #fff; border-radius: 0.35rem; text-decoration: none;">
+					💌 Read the message
+				</a>
+			</p>
+			<p style="text-align: left;">
+				If you are unable to click the link, please copy and paste it into your browser's address bar.
+				<br>
+			<p style="margin-top: 30px; margin-bottom: 20px;">
+				<a href="{{ letter_link }}"> {{ letter_link }} </a>
+			</p>
+			<br>
+			<p style="text-align: left;">
+				If you have any questions, please contact us at
+				<a href="mailto:sayhi@hossainfoysal.com">sayhi@hossainfoysal.com</a>. We would love to help answer your question.
+			</p>
+			<p style="text-align: left;">
+				Best Regards,<br>
+				Valentine AI
+			</p>
+			<address style="text-align: left; background-color: #dfe6e9; color: #000; padding: 2rem;">
+				<small>
+					It's a fun project. Made by <a href="http://hossainfoysal.com" target="_new">HossainFoysal.com</a>
+					<br>
+					Hosted on <a href="http://binomatrix.com" target="_new">BinoMatrix</a>. Fastest growing software company in Bangladesh.
+				</small>
+			</address>
+		</div>
+	</body>
+</html>

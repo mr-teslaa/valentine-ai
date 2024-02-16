@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			{% if title %}
+			{{ title }} | Valentines Letter Sender
+			{% else %}
+			Valentines Letter Sender
+			{% endif %}
+		</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css"
+			href="//fonts.googleapis.com/css2?family=DM+Serif+Display&amp;family=Roboto:wght@300;400;700&amp;display=swap" />
+		<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+
+		<!-- Vendor Styles -->
+		<link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/swiper/swiper-bundle.min.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/prismjs/themes/prism.css') }}" />
+		<link rel="stylesheet"
+			href="{{ url_for('static', filename='assets/vendor/prismjs/plugins/toolbar/prism-toolbar.css') }}" />
+		<link rel="stylesheet"
+			href="{{ url_for('static', filename='assets/vendor/prismjs/plugins/line-numbers/prism-line-numbers.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/theme.min.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/custom.css') }}" />
+
+		{% block head %}
+		{% endblock %}
+
+		<!-- Theme mode -->
+		<script>
+			let mode = window.localStorage.getItem('mode'),
+				root = document.getElementsByTagName('html')[0];
+			if (mode !== null && mode === 'dark') {
+				root.classList.add('dark-mode');
+			} else {
+				root.classList.remove('dark-mode');
+			}
+		</script>
+		{{ moment.include_moment() }}
+	</head>
+	<body>
+		<!-- ============== START NAVIGATION SECTION ============== -->
+		{% block nav %}
+		{% endblock %}
+		<!-- ============== END NAVIGATION SECTION ============== -->
+
+
+		<!-- bs-toast toast toast-ex animate__animated my-2 fade bg-primary animate__slideInRight show -->
+		<!-- ============== START FLASH MESSAGE ============== -->
+		{% with messages=get_flashed_messages(with_categories=true)%}
+		{% if messages %}
+		{% for category, message in messages %}
+		<div class="alert alert-{{ category }} alert-dismissible fade show" role="alert"
+			style="margin-bottom: 0; position: absolute; top: 7rem; z-index: 1500;">
+			{{ message }}
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+		{% endfor %}
+		{% endif %}
+		{% endwith %}
+		<!-- ============== END FLASH MESSAGE ============== -->
+
+		<!-- ============== START BODY SECTION ============== -->
+		{% block body %}
+		{% endblock %}
+		<!-- ============== END BODY SECTION ============== -->
+
+		<!-- ============== START FOOTER SECTION ============== -->
+		{% block footer %}
+		{% endblock %}
+		<!-- ============== END FOOTER SECTION ============== -->
+		<script>
+			const numberWithCommas = (x) => {
+				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
+		</script>
+		<!-- Vendor Scripts -->
+		<script
+			src="{{ url_for('static', filename='assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+		<script
+			src="{{ url_for('static', filename='assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/vendor/prismjs/components/prism-core.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/vendor/prismjs/components/prism-markup.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/vendor/prismjs/components/prism-clike.min.js') }}"></script>
+		<script
+			src="{{ url_for('static', filename='assets/vendor/prismjs/plugins/toolbar/prism-toolbar.min.js') }}"></script>
+		<script
+			src="{{ url_for('static', filename='assets/vendor/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js') }}"></script>
+		<script
+			src="{{ url_for('static', filename='assets/vendor/prismjs/plugins/line-numbers/prism-line-numbers.min.js') }}"></script>
+
+		{% block script %}
+		{% endblock %}
+		<!-- Main Theme Script -->
+		<script src="{{ url_for('static', filename='assets/js/theme.js') }}"></script>
+	</body>
+</html>
